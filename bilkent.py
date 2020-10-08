@@ -13,3 +13,4 @@ while i in range(len(a)):
     i+=1
 print('New string:',c)
 print('sa')
+#as
