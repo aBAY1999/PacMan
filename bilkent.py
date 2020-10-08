@@ -12,3 +12,4 @@ while i in range(len(a)):
         c += a[i]
     i+=1
 print('New string:',c)
+print('sa')
