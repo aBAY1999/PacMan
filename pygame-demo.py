@@ -54,9 +54,9 @@ while not crashed:
     x += x_change
     y += y_change
     if x>750 :x= 750
-    if x<50: x=50
+    elif x<50: x=50
     if y > 450:y=450
-    if 50 > y :y=50
+    elif 50 > y :y=50
 
     gameDisplay.fill(white)
     if i % 27 < 9:
