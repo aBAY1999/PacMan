@@ -2,7 +2,7 @@ import pygame
 
 pygame.init()
 
-display_width = 800             #ekran boyutu
+display_width = 800  # ekran boyutu
 display_height = 500
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))
@@ -23,9 +23,9 @@ def drawImg(img, x, y):
     gameDisplay.blit(rImg, (x, y))
 
 
-x = (display_width * 0.5-12)
-y = (display_height * 0.5-12)
-i=0
+x = (display_width * 0.5 - 12)
+y = (display_height * 0.5 - 12)
+i = 0
 x_change = 0
 y_change = 0
 yon = 0;
@@ -37,24 +37,22 @@ while not crashed:
         if event.type == pygame.QUIT:
             crashed = True
         if event.type == pygame.KEYDOWN:
+            y_change = 0
+            x_change = 0
             if event.key == pygame.K_LEFT:
                 yon = 2;
                 x_change = - 3
-                y_change = 0
             elif event.key == pygame.K_RIGHT:
                 yon = 0;
                 x_change = 3
-                y_change = 0
             elif event.key == pygame.K_UP:
                 yon = 1;
                 y_change = - 3
-                x_change = 0
             elif event.key == pygame.K_DOWN:
                 yon = 3;
                 y_change = 3
-                x_change = 0
     x += x_change
-    y+= y_change
+    y += y_change
 
     gameDisplay.fill(white)
     if i % 27 < 9:
@@ -63,9 +61,9 @@ while not crashed:
         drawImg(sag_ortaImg, x, y)
     else:
         drawImg(sag_acikImg, x, y)
-    i+=1
+    i += 1
     pygame.display.update()
-
+    if i == 27: i = 0
     clock.tick(60)
 
 pygame.quit()
