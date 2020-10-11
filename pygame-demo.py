@@ -2,8 +2,8 @@ import pygame
 
 pygame.init()
 
-display_width = 825             #ekran boyutu
-display_height = 525
+display_width = 27*8  # ekran boyutu
+display_height = 27*9
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Pacman')
@@ -16,15 +16,36 @@ crashed = False
 kapaliImg = pygame.image.load('res/kapali.png')
 sag_ortaImg = pygame.image.load('res/sag_orta.png')
 sag_acikImg = pygame.image.load('res/sag_acik.png')
+yem = pygame.image.load('res/yem.png')
+duvar = pygame.image.load('res/duvar.png')
+
+matris = [[1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 0, 0, 0, 0, 0, 0, 1],
+          [1, 0, 1, 1, 1, 1, 0, 1],
+          [1, 0, 1, 0, 0, 0, 0, 1],
+          [1, 0, 1, 0, 1, 1, 1, 1],
+          [1, 0, 0, 0, 0, 0, 0, 1],
+          [1, 1, 1, 0, 1, 1, 0, 1],
+          [1, 0, 0, 0, 0, 0, 0, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1]]
+
+offset_x = 0
+offset_y = 0
 
 
 def drawImg(img, x, y):
     rImg = pygame.transform.rotate(img, 90 * yon)
-    gameDisplay.blit(rImg, (x, y))
+    gameDisplay.blit(rImg, (offset_x+x,offset_y+ y))
 
-x = (display_width * 0.5)
-y = (display_height * 0.5)
-i=0
+
+def statikImg(img, x, y):
+    gameDisplay.blit(img, (x, y))
+
+
+c = 27
+x = (offset_x + c)
+y = (offset_y + c)
+i = 0
 x_change = 0
 y_change = 0
 yon = 0
@@ -35,30 +56,34 @@ while not crashed:
 
         if event.type == pygame.QUIT:
             crashed = True
-        if event.type == pygame.KEYDOWN :
+        if event.type == pygame.KEYDOWN:
             x_change = 0
             y_change = 0
             if event.key == pygame.K_LEFT:
-                yon = 2;
+                yon = 2
                 x_change = - 3
             elif event.key == pygame.K_RIGHT:
-                yon = 0;
+                yon = 0
                 x_change = 3
             elif event.key == pygame.K_UP:
-                yon = 1;
+                yon = 1
                 y_change = - 3
             elif event.key == pygame.K_DOWN:
-                yon = 3;
+                yon = 3
                 y_change = 3
-
-    x += x_change
+    print(x,y)
     y += y_change
-    if x>750 :x= 750
-    elif x<50: x=50
-    if y > 450:y=450
-    elif 50 > y :y=50
+    x += x_change
 
     gameDisplay.fill(white)
+    a = 0
+    b = 0
+    for a in range(len(matris)):
+        for b in range(len(matris[0])):
+            if matris[a][b] == 1:
+                statikImg(duvar,c * b,c * a)
+            elif matris[a][b] == 0:
+                statikImg(yem,  c * b,  c * a)
     if i % 27 < 9:
         drawImg(kapaliImg, x, y)
     elif i % 27 < 18:
