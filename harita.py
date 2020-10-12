@@ -13,6 +13,6 @@ matris = [[1, 1, 1, 1, 1, 1, 1, 1],
 offset_x=300
 offset_y=100
 #print(len(matris[0]))
-#print(matris)
-for a in range(len(matris)):
-    print(a)
+print(matris[6][2])
+#for a in range(len(matris)):
+   # print(a)
