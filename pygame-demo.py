@@ -88,7 +88,9 @@ while not crashed:
         for b in range(len(matris[0])):
             if matris[a][b] == 1:
                 statikImg(duvar, c * b, c * a)
-            elif matris[a][b] == 0:
+            elif matris[a][b] == 0 :
+                if a== y/c and b== x/c:
+                    matris[a][b]= -1
                 statikImg(yem, c * b, c * a)
     if i % 3 < 1:
         drawImg(kapaliImg, x, y)
