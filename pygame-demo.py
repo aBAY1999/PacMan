@@ -37,10 +37,18 @@ def drawImg(img, x, y):
     rImg = pygame.transform.rotate(img, 90 * yon)
     gameDisplay.blit(rImg, (offset_x + x, offset_y + y))
 
-
 def statikImg(img, x, y):
     gameDisplay.blit(img, (x, y))
 
+def score_text(score):
+    print('Score:',score)
+
+def check_yem(score,yem_sayisi,sure):
+    if yem_sayisi == 0:
+        score+= sure
+        print('Final Score:',score)
+        return crashed(True)
+sure=100
 u=0
 j=0
 c = 27
@@ -86,6 +94,7 @@ while not crashed:
     gameDisplay.fill(white)
     a = 0
     b = 0
+    yem_sayisi=0
     for a in range(len(matris)):
         for b in range(len(matris[0])):
             if matris[a][b] == 1:
@@ -95,8 +104,9 @@ while not crashed:
                     matris[a][b]= -1
                     u+=1
                     score+=100
-
                 statikImg(yem, c * b, c * a)
+                yem_sayisi+=1
+                #print(yem_sayisi)
     if i % 3 < 1:
         drawImg(kapaliImg, x, y)
     elif i % 3 < 2:
@@ -105,11 +115,12 @@ while not crashed:
         drawImg(sag_acikImg, x, y)
     i += 1
     if u>j:
-        print('Score:',score)
+        score_text(score)
         j+=1
     pygame.display.update()
     if i == 3: i = 0
     clock.tick(5)
-
+    sure-=1
+    check_yem(score,yem_sayisi,sure)
 pygame.quit()
 quit()
