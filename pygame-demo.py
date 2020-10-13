@@ -6,7 +6,7 @@ display_width = 27 * 8  # ekran boyutu
 display_height = 27 * 9
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))
-pygame.display.set_caption('Pacman')
+pygame.display.set_caption('PacMan')
 
 black = (0, 0, 0)
 white = (255, 255, 255)
