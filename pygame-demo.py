@@ -41,7 +41,8 @@ def drawImg(img, x, y):
 def statikImg(img, x, y):
     gameDisplay.blit(img, (x, y))
 
-
+u=0
+j=0
 c = 27
 x = (offset_x + c)
 y = (offset_y + c)
@@ -49,6 +50,7 @@ i = 0
 x_change = 0
 y_change = 0
 yon = 0
+score=0
 
 while not crashed:
 
@@ -91,6 +93,9 @@ while not crashed:
             elif matris[a][b] == 0 :
                 if a== y/c and b== x/c:
                     matris[a][b]= -1
+                    u+=1
+                    score+=100
+
                 statikImg(yem, c * b, c * a)
     if i % 3 < 1:
         drawImg(kapaliImg, x, y)
@@ -99,6 +104,9 @@ while not crashed:
     else:
         drawImg(sag_acikImg, x, y)
     i += 1
+    if u>j:
+        print('Score:',score)
+        j+=1
     pygame.display.update()
     if i == 3: i = 0
     clock.tick(5)
