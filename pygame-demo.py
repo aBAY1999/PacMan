@@ -47,7 +47,8 @@ def check_yem(score,yem_sayisi,sure):
     if yem_sayisi == 0:
         score+= sure
         print('Final Score:',score)
-        return crashed(True)
+        return 1
+
 sure=100
 u=0
 j=0
@@ -59,11 +60,13 @@ x_change = 0
 y_change = 0
 yon = 0
 score=0
+bitti_mi=0
+
 
 while not crashed:
-
+    if bitti_mi == 1:
+        break
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             crashed = True
         if event.type == pygame.KEYDOWN:
@@ -121,6 +124,6 @@ while not crashed:
     if i == 3: i = 0
     clock.tick(5)
     sure-=1
-    check_yem(score,yem_sayisi,sure)
+    bitti_mi=(check_yem(score,yem_sayisi,sure))
 pygame.quit()
 quit()
